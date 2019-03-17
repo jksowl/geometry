@@ -1,26 +1,23 @@
 #include <stdio.h>
-
 #include <math.h>
-
 #include <stdlib.h>
 
 const double pi = 3.1416;
 
-void net()
 
+void net()
 {
     printf("- \n");
 }
 
-void da()
 
+void da()
 {
     printf("1. circle \n \n");
 }
 
-int main()
+int main() {
 
-{
     int x1, y1, x2, y2, t, u, d, q;
 
     float r1, r2, p1, p2, s1, s2;
