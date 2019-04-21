@@ -1,3 +1,3 @@
-geo: geo.c
-	gcc -Wall -o geo geo.c -lm
+src/geo: src/geo.c
+	gcc -Wall -o src/geo src/geo.c -lm
 
