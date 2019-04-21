@@ -41,14 +41,12 @@ int main()
 	if(f1<=0||f<=0||f1>3||f>3)
 	{
 		cout<<"ERROR INPUT DATA"<<endl;
-		system("PAUSE");
 		return 0;
 	}
 	cin >> f1;
 	if(f1<=0||f<=0||f1>3||f>3)
 	{
 		cout<<"ERROR INPUT DATA"<<endl;
-		system("PAUSE");
 		return 0;
 	}
 	if (f == 1 && f1 == 1)
@@ -231,7 +229,6 @@ int main()
 
 	}
 	
-	system("PAUSE");
 	return 0;
 }
 
