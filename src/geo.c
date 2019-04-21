@@ -1,82 +1,237 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
+#include "geo.h"
 
-const double pi = 3.1416;
+extern void proverka(double, double, double, double, double, double, double&, double, bool&);
+extern void printCircle(double, double, double, bool, int, int, int);
+extern void printTriangle(double, double, double, double, double, double, bool, int, int,int);
+extern void printPoligon(double, double, double, double, double, double, double, double, bool, int, int,int);
+extern void circle_intersects(double,double,double,double,double,double);
+extern int peresech(double, double, double, double, double, double, double, double, bool&);
 
 
-void net()
+int main()
 {
-    printf("- \n");
+	cout << "\t\t\t  |Choose two figures|" << endl;
+	cout << "|==============================================|" << endl;
+	cout << "|1.Circle|2.Triangle|3.Polygon|exit(Press'esc')|" << endl;
+	cout << "|========|==========|=========|================|" << endl;
+	double Perimetr1;
+	struct Figure {
+		double x;
+		double y;
+		double x1;
+		double y1;
+		double x2;
+		double y2;
+		double x3;
+		double y3;
+		double r;
+
+	};
+
+	Figure circle;
+	Figure triangle;
+	Figure poligon;
+	Figure circle2;
+	Figure triangle2;
+	Figure poligon2;
+	int k = 0, lkl1 = 0, lkl2 = 0, lkl3 = 0, f = 2, f1 = 2, lkl_1 = 0, lkl_2 = 0, lkl_3 = 0;
+	bool fact = false, okr = false;
+
+	cin >> f; 
+	if(f1<=0||f<=0||f1>3||f>3)
+	{
+		cout<<"ERROR INPUT DATA"<<endl;
+		system("PAUSE");
+		return 0;
+	}
+	cin >> f1;
+	if(f1<=0||f<=0||f1>3||f>3)
+	{
+		cout<<"ERROR INPUT DATA"<<endl;
+		system("PAUSE");
+		return 0;
+	}
+	if (f == 1 && f1 == 1)
+	{
+		
+		lkl_1 = 1;
+		printf("( x  y , r) "); cin >> circle2.x; cin >> circle2.y; cin >> circle2.r; cout << endl;
+		k++;
+
+	}
+	if (f == 2 && f1 == 2)
+	{
+		
+		lkl_2 = 2;
+		printf("((x1 y1 , x2, y2 , x3 y3)) "); cin >> triangle2.x; cin >> triangle2.y; cin >> triangle2.x1; cin >> triangle2.y1; cin >> triangle2.x2; cin >> triangle2.y2; cout << endl;
+		k++;
+	}
+	if (f == 3 && f1 == 3)
+	{
+		
+		lkl_3 = 3;
+		printf("((x1 y1 , x2, y2 , x3 y3 , x4 y4)) "); cin >> poligon2.x; cin >> poligon2.y; cin >> poligon2.x1; cin >> poligon2.y1; cin >> poligon2.x2; cin >> poligon2.y2; cin >> poligon2.x3; cin >> poligon2.y3; cout << endl;
+		k++;
+	}
+	
+
+	if (f == 1 || f1 == 1)
+	{
+		lkl1 = 1;
+		printf("( x  y , r) "); cin >> circle.x; cin >> circle.y; cin >> circle.r; cout << endl;
+		k++;
+	} 
+
+	if (f == 2 || f1 == 2)
+	{
+
+		lkl2 = 2;
+		printf("((x1 y1 , x2, y2 , x3 y3)) "); cin >> triangle.x; cin >> triangle.y; cin >> triangle.x1; cin >> triangle.y1; cin >> triangle.x2; cin >> triangle.y2; cout << endl;
+		k++;
+	}
+
+	if (f == 3 || f1 == 3)
+	{
+		lkl3 = 3;
+		printf("((x1 y1 , x2, y2 , x3 y3 , x4 y4)) "); cin >> poligon.x; cin >> poligon.y; cin >> poligon.x1; cin >> poligon.y1; cin >> poligon.x2; cin >> poligon.y2; cin >> poligon.x3; cin >> poligon.y3; cout << endl;
+		k++;
+	}
+	if (lkl_1 == 1 && lkl1 == 1)
+	{
+		circle_intersects(circle.x, circle.y, circle.r, circle2.x, circle2.y, circle2.r);
+	}
+	
+	if (lkl_2 == 2 && lkl2 == 2)
+	{
+		peresech(triangle.x, triangle.y, triangle.x1, triangle.y1, triangle2.x, triangle2.y, triangle2.x1, triangle2.y1, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x1, triangle.y1, triangle2.x1, triangle2.y1, triangle2.x2, triangle2.y2, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x1, triangle.y1, triangle2.x2, triangle2.y2, triangle2.x, triangle2.y, fact);
+		if (fact == false)
+			
+			
+		if (fact == false)
+			peresech(triangle.x1, triangle.y1, triangle.x2, triangle.y2, triangle2.x, triangle2.y, triangle2.x1, triangle2.y1, fact);
+		if (fact == false)
+			peresech(triangle.x1, triangle.y1, triangle.x2, triangle.y2, triangle2.x1, triangle2.y1, triangle2.x2, triangle2.y2, fact);
+		if (fact == false)
+			peresech(triangle.x1, triangle.y1, triangle.x2, triangle.y2, triangle2.x2, triangle2.y2, triangle2.x, triangle2.y, fact);
+
+		if (fact == false)
+			peresech(triangle.x2, triangle.y2, triangle.x, triangle.y, triangle2.x, triangle2.y, triangle2.x1, triangle2.y1, fact);
+		if (fact == false)
+			peresech(triangle.x2, triangle.y2, triangle.x, triangle.y, triangle2.x1, triangle2.y1, triangle2.x2, triangle2.y2, fact);
+		if (fact == false)
+			peresech(triangle.x2, triangle.y2, triangle.x, triangle.y, triangle2.x2, triangle2.y2, triangle2.x, triangle2.y, fact);
+		
+		printTriangle(triangle.x, triangle.y, triangle.x1, triangle.y1, triangle.x2, triangle.y2, fact, 2, 2, 1);
+		printTriangle(triangle2.x, triangle2.y, triangle2.x1, triangle2.y1, triangle2.x2, triangle2.y2, fact, 1, 2, 2);
+
+	}
+	
+	if (lkl_3 == 3 && lkl3 == 3)
+	{
+		peresech(poligon.x, poligon.y, poligon.x1, poligon.y1, poligon2.x, poligon2.y, poligon2.x1, poligon2.y1, fact);
+		if (fact == false)
+			peresech(poligon.x, poligon.y, poligon.x1, poligon.y1, poligon2.x1, poligon2.y1, poligon2.x2, poligon2.y2, fact);
+		if (fact == false)
+			peresech(poligon.x, poligon.y, poligon.x1, poligon.y1, poligon2.x2, poligon2.y2, poligon2.x3, poligon2.y3, fact);
+		if (fact == false)
+			peresech(poligon.x, poligon.y, poligon.x1, poligon.y1, poligon2.x, poligon2.y, poligon2.x3, poligon2.y3, fact);
+		
+		
+		
+		if (fact == false)
+			peresech(poligon.x1, poligon.y1, poligon.x2, poligon.y2, poligon2.x, poligon2.y, poligon2.x1, poligon2.y1, fact);
+		if (fact == false)
+			peresech(poligon.x1, poligon.y1, poligon.x2, poligon.y2, poligon2.x1, poligon2.y1, poligon2.x2, poligon2.y2, fact);
+		if (fact == false)
+			peresech(poligon.x1, poligon.y1, poligon.x2, poligon.y2, poligon2.x2, poligon2.y2, poligon2.x3, poligon2.y3, fact);
+		if (fact == false)
+			peresech(poligon.x1, poligon.y1, poligon.x2, poligon.y2, poligon2.x, poligon2.y, poligon2.x3, poligon2.y3, fact);
+
+		if (fact == false)
+			peresech(poligon.x2, poligon.y2, poligon.x3, poligon.y3, poligon2.x, poligon2.y, poligon2.x1, poligon2.y1, fact);
+		if (fact == false)
+			peresech(poligon.x2, poligon.y2, poligon.x3, poligon.y3, poligon2.x1, poligon2.y1, poligon2.x2, poligon2.y2, fact);
+		if (fact == false)
+			peresech(poligon.x2, poligon.y2, poligon.x3, poligon.y3, poligon2.x2, poligon2.y2, poligon2.x3, poligon2.y3, fact);
+		if (fact == false)
+			peresech(poligon.x2, poligon.y2, poligon.x3, poligon.y3, poligon2.x, poligon2.y, poligon2.x3, poligon2.y3, fact);
+
+		if (fact == false)
+			peresech(poligon.x, poligon.y, poligon.x3, poligon.y3, poligon2.x, poligon2.y, poligon2.x1, poligon2.y1, fact);
+		if (fact == false)
+			peresech(poligon.x, poligon.y, poligon.x3, poligon.y3, poligon2.x1, poligon2.y1, poligon2.x2, poligon2.y2, fact);
+		if (fact == false)
+			peresech(poligon.x, poligon.y, poligon.x3, poligon.y3, poligon2.x2, poligon2.y2, poligon2.x3, poligon2.y3, fact);
+		if (fact == false)
+			peresech(poligon.x, poligon.y, poligon.x3, poligon.y3, poligon2.x, poligon2.y, poligon2.x3, poligon2.y3, fact);
+
+		printPoligon(poligon.x , poligon.y, poligon.x1, poligon.y1, poligon.x2, poligon.y2, poligon.x3, poligon.y3, fact, 2, 3, 1);
+		printPoligon(poligon2.x, poligon2.y, poligon2.x1, poligon2.y1, poligon2.x2, poligon2.y2, poligon2.x3, poligon2.y3, fact, 1, 3, 2);
+
+		
+	}
+	
+	if (lkl1 == 1 && lkl2 == 2)
+	{
+		proverka(circle.x, circle.y, triangle.x, triangle.y, triangle.x1, triangle.y1, Perimetr1, circle.r, okr);
+		if (okr != 1)
+			proverka(circle.x, circle.y, triangle.x1, triangle.y1, triangle.x2, triangle.y2, Perimetr1, circle.r, okr);
+		if (okr != 1)
+			proverka(circle.x, circle.y, triangle.x, triangle.y, triangle.x2, triangle.y2, Perimetr1, circle.r, okr);
+		printCircle(circle.x, circle.y, circle.r, okr, 2, lkl2,1);
+		printTriangle(triangle.x, triangle.y, triangle.x1, triangle.y1, triangle.x2, triangle.y2, okr, 1, lkl1,2);
+
+	}
+	if (lkl1 == 1 && lkl3 == 3)
+	{
+		proverka(circle.x, circle.y, poligon.x, poligon.y, poligon.x1, poligon.y1, Perimetr1, circle.r, okr);
+		if (okr != 1)
+			proverka(circle.x, circle.y, poligon.x1, poligon.y1, poligon.x2, poligon.y2, Perimetr1, circle.r, okr);
+		if (okr != 1)
+			proverka(circle.x, circle.y, poligon.x2, poligon.y2, poligon.x3, poligon.y3, Perimetr1, circle.r, okr);
+		if (okr != 1)
+			proverka(circle.x, circle.y, poligon.x3, poligon.y3, poligon.x, poligon.y, Perimetr1, circle.r, okr);
+		printCircle(circle.x, circle.y, circle.r, okr, 2, lkl3,1);
+		printPoligon(poligon.x, poligon.y, poligon.x1, poligon.y1, poligon.x2, poligon.y2, poligon.x3, poligon.y3, okr, 1, lkl1,2);
+
+	}
+	
+	if (lkl3 == 3 && lkl2 == 2)
+	{
+		peresech(triangle.x, triangle.y, triangle.x1, triangle.y1, poligon.x, poligon.y, poligon.x1, poligon.y1, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x1, triangle.y1, poligon.x1, poligon.y1, poligon.x2, poligon.y2, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x1, triangle.y1, poligon.x2, poligon.y2, poligon.x3, poligon.y3, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x1, triangle.y1, poligon.x, poligon.y, poligon.x3, poligon.y3, fact);
+		if (fact == false)
+			peresech(triangle.x1, triangle.y1, triangle.x2, triangle.y2, poligon.x, poligon.y, poligon.x1, poligon.y1, fact);
+		if (fact == false)
+			peresech(triangle.x1, triangle.y1, triangle.x2, triangle.y2, poligon.x1, poligon.y1, poligon.x2, poligon.y2, fact);
+		if (fact == false)
+			peresech(triangle.x1, triangle.y1, triangle.x2, triangle.y2, poligon.x2, poligon.y2, poligon.x3, poligon.y3, fact);
+		if (fact == false)
+			peresech(triangle.x1, triangle.y1, triangle.x2, triangle.y2, poligon.x1, poligon.y1, poligon.x2, poligon.y1, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x2, triangle.y2, poligon.x, poligon.y, poligon.x1, poligon.y1, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x2, triangle.y2, poligon.x1, poligon.y1, poligon.x2, poligon.y2, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x2, triangle.y2, poligon.x2, poligon.y2, poligon.x3, poligon.y3, fact);
+		if (fact == false)
+			peresech(triangle.x, triangle.y, triangle.x2, triangle.y2, poligon.x, poligon.y, poligon.x3, poligon.y3, fact);
+
+		printPoligon(poligon.x,poligon.y,poligon.x1,poligon.y1,poligon.x2,poligon.y2,poligon.x3,poligon.y3,fact,2,lkl2,1);
+		printTriangle(triangle.x, triangle.y, triangle.x1, triangle.y1, triangle.x2, triangle.y2, fact, 1, lkl3, 2);
+
+	}
+	
+	system("PAUSE");
+	return 0;
 }
 
-
-void da()
-{
-    printf("1. circle \n \n");
-}
-
-int main() {
-
-    int x1, y1, x2, y2, t, u, d, q;
-
-    float r1, r2, p1, p2, s1, s2;
-
-    printf("Input circle1(x1 y1, r1)");
-
-    scanf("%d %d %f", &x1, &y1, &r1);
-
-    printf("Input circle2(x2 y2, r2)");
-
-    scanf("%d %d %f", &x2, &y2, &r2);
-
-    p1 = 2 * pi * r1;
-
-    p2 = 2 * pi * r2;
-
-    s1 = pi * r1 * r1;
-
-    s2 = pi * r2 * r2;
-
-    printf("1. circle(%d %d, %.3f) \n", x1, y1, r1);
-
-    printf("perimeter = %.3f \n", p1);
-
-    printf("area = %.3f \n", s1);
-
-    printf("intersects: \n");
-
-    t = x2 - x1;
-
-    u = y2 - y1;
-
-    t = pow(t, 2);
-
-    u = pow(u, 2);
-
-    d = sqrt(t + u);
-
-    q = r1 + r2;
-
-    if (d > q)
-
-        net();
-
-    else
-        da();
-
-    printf("2. circle(%d %d, %.3f) \n", x2, y2, r2);
-
-    printf("perimeter = %.3f \n", p2);
-
-    printf("area = %.3f \n", s2);
-
-    printf("intersects: \n");
-
-    if (d > q)
-
-        net();
-
-    else
-        da();
-}
