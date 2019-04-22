@@ -1,37 +1,39 @@
-CFLAGS= -Wall -Werror
-OBJ = g++ $(CFLAGS) -c $< -o $@
+FLAGS := -std=99
+BIN_DIR := ./bin
+BUILD_DIR := ./build
+SRC_DIR := ./src
+CC := g++ -no-pie -Wall -Werror
 .PHONY: clean
 
-all: target1 target2 bin/geo.exe
-		
-target1:
-	mkdir -p build
-		
-target2:
-	mkdir -p bin 
+all: $(BIN_DIR)/geo
 
-bin/geo.exe: build/areCollinear.o build/proverka.o build/projectionsIntersect.o build/print.o build/perecech.o build/get.o build/geo.o build/circle_intersects.o
-	g++ $(CFLAGS) $^ -o $@
+$(BIN_DIR)/geo: $(BUILD_DIR)/geo.o $(BUILD_DIR)/areCollinear.o $(BUILD_DIR)/circle_intersects.o $(BUILD_DIR)/get.o $(BUILD_DIR)/perecech.o $(BUILD_DIR)/print.o $(BUILD_DIR)/projectionsIntersect.o $(BUILD_DIR)/proverka.o
+	$(CC) $(BUILD_DIR)/geo.o $(BUILD_DIR)/areCollinear.o $(BUILD_DIR)/circle_intersects.o $(BUILD_DIR)/get.o $(BUILD_DIR)/perecech.o $(BUILD_DIR)/print.o $(BUILD_DIR)/projectionsIntersect.o $(BUILD_DIR)/proverka.o -o $(BIN_DIR)/geo -lm $(FLAG)
 
-build/areCollinear.o: src/areCollinear.c src/geo.h
-	$(OBJ)
-build/proverka.o: src/proverka.c src/geo.h
-	$(OBJ)
-build/projectionsIntersect.o: src/projectionsIntersect.c src/geo.h 
-	$(OBJ)
-build/print.o: src/print.c src/geo.h 
-	$(OBJ)
-build/perecech.o: src/perecech.c src/geo.h 
-	$(OBJ)
-build/get.o: src/get.c src/geo.h 
-	$(OBJ)
-build/geo.o: src/geo.c src/geo.h 
-	$(OBJ)
-build/circle_intersects.o: src/circle_intersects.c src/geo.h 
-	$(OBJ)
+$(BUILD_DIR)/geo.o: $(SRC_DIR)/geo.c
+	$(CC) -c $(SRC_DIR)/geo.c -o $(BUILD_DIR)/geo.o $(FLAG)
+
+$(BUILD_DIR)/areCollinear.o: $(SRC_DIR)/areCollinear.c
+	$(CC) -c $(SRC_DIR)/areCollinear.c -o $(BUILD_DIR)/areCollinear.o $(FLAG)
+
+$(BUILD_DIR)/circle_intersects.o: $(SRC_DIR)/circle_intersects.c
+	$(CC) -c $(SRC_DIR)/circle_intersects.c -o $(BUILD_DIR)/circle_intersects.o $(FLAG)
+
+$(BUILD_DIR)/get.o: $(SRC_DIR)/get.c
+	$(CC) -c $(SRC_DIR)/get.c -o $(BUILD_DIR)/get.o $(FLAG)
+
+$(BUILD_DIR)/perecech.o: $(SRC_DIR)/perecech.c
+	$(CC) -c $(SRC_DIR)/perecech.c -o $(BUILD_DIR)/perecech.o $(FLAG)
+
+$(BUILD_DIR)/print.o: $(SRC_DIR)/print.c
+	$(CC) -c $(SRC_DIR)/print.c -o $(BUILD_DIR)/print.o $(FLAG)
+
+$(BUILD_DIR)/projectionsIntersect.o: $(SRC_DIR)/projectionsIntersect.c
+	$(CC) -c $(SRC_DIR)/projectionsIntersect.c -o $(BUILD_DIR)/projectionsIntersect.o $(FLAG)
+
+$(BUILD_DIR)/proverka.o: $(SRC_DIR)/proverka.c
+	$(CC) -c $(SRC_DIR)/proverka.c -o $(BUILD_DIR)/proverka.o $(FLAG)
 
 clean:
-	rm build/*.o
-	rm bin/*.exe
-	rm -R build
-	rm -R bin 
+	rm -rf $(BIN_DIR)/geo
+	rm -rf $(BUILD_DIR)/*.o
