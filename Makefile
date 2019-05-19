@@ -48,15 +48,13 @@ build/src/projectionsIntersect.o: src/projectionsIntersect.c src/geo.h
 
 
 
-bin/geo_test: build/test/test.o build/test/circle_intersects_test.o build/test/print_test.o build/test/proverka_test.o build/test/get_test.o 
+bin/geo_test: build/test/test.o build/test/circle_intersects_test.o build/test/proverka_test.o build/test/get_test.o 
 	g++ -std=c++11 $(CFLAGS)  $^ -o $@
 
 build/test/test.o: test/test.c test/geo.h
 	$(TEST)
-build/test/circle_intersects_test.o: test/circle_intersects_test.c test/geo.h
-	$(TEST)
 
-build/test/print_test.o: test/print_test.c test/geo.h
+build/test/circle_intersects_test.o: test/circle_intersects_test.c test/geo.h
 	$(TEST)
 
 build/test/proverka_test.o: test/proverka_test.c test/geo.h
