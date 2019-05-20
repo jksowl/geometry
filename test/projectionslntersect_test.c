@@ -1,5 +1,5 @@
+#include "ctest.h"
 #include "geo.h"
-
 extern double getMax(double x1, double x2);
 extern double getMin(double x1, double x2);
 

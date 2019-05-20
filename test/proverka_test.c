@@ -1,3 +1,4 @@
+#include "ctest.h"
 #include "geo.h"
 
 int distan(double x, double y, double x1, double y1, double& L)

@@ -1,5 +1,5 @@
+#include "ctest.h"
 #include "geo.h"
-
 extern bool areCollinear(double x1, double y1, double x2, double y2);
 
 extern double getMin(double x1, double x2);
